@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_oauth_provider_form_zitadel" model="ir.ui.view">
+        <field name="name">auth.oauth.provider.form.zitadel</field>
+        <field name="model">auth.oauth.provider</field>
+        <field name="inherit_id" ref="auth_oauth.view_oauth_provider_form"/>
+        <field name="arch" type="xml">
+            <field name="client_id" position="after">
+                <field name="client_secret" password="True"/>
+                <field name="flow"/>
+                <field name="default_user_type"/>
+                <field name="auto_redirect"/>
+            </field>
+            <field name="auth_endpoint" position="after">
+                <field name="token_endpoint"
+                       invisible="flow != 'id_token_code'"
+                       required="flow == 'id_token_code'"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_oauth_provider_tree_zitadel" model="ir.ui.view">
+        <field name="name">auth.oauth.provider.list.zitadel</field>
+        <field name="model">auth.oauth.provider</field>
+        <field name="inherit_id" ref="auth_oauth.view_oauth_provider_tree"/>
+        <field name="arch" type="xml">
+            <field name="client_id" position="after">
+                <field name="flow"/>
+            </field>
+        </field>
+    </record>
+</odoo>
