@@ -57,7 +57,7 @@ with placeholder endpoints for you to fill in.
         'data/auth_oauth_provider_data.xml',
         'views/auth_oauth_provider_views.xml',
     ],
-    'images': ['static/description/banner.png'],
+    'images': ['static/description/banner.gif', 'static/description/icon.png'],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',
