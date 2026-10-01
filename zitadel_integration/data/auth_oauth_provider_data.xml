@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- A ready-to-fill provider, shipped DISABLED and with placeholder
+         endpoints. Nothing here is a working configuration: the four values an
+         OIDC provider is identified by - issuer host, client id, client secret
+         and the endpoints under it - belong to the deployment, not to the
+         module, and a module that ships somebody's tenant hands every installer
+         a login button pointing at a stranger's directory.
+
+         noupdate="1" so that once an administrator has filled this in, a module
+         upgrade never writes over their credentials. -->
+    <data noupdate="1">
+        <record id="provider_zitadel" model="auth.oauth.provider">
+            <field name="name">ZITADEL</field>
+            <field name="flow">id_token_code</field>
+
+            <!-- From your ZITADEL application, Configuration tab. -->
+            <field name="client_id"></field>
+            <field name="client_secret"></field>
+
+            <!-- Replace example.zitadel.cloud with your own instance. These are
+                 ZITADEL's standard OIDC paths; other providers publish theirs
+                 at /.well-known/openid-configuration. -->
+            <field name="auth_endpoint">https://example.zitadel.cloud/oauth/v2/authorize</field>
+            <field name="token_endpoint">https://example.zitadel.cloud/oauth/v2/token</field>
+            <field name="validation_endpoint">https://example.zitadel.cloud/oidc/v1/userinfo</field>
+
+            <field name="scope">openid profile email</field>
+            <field name="body">Login with ZITADEL</field>
+            <field name="css_class">fa fa-fw fa-sign-in text-primary</field>
+            <field name="default_user_type">portal</field>
+            <field name="auto_redirect" eval="False"/>
+
+            <!-- Left off deliberately. Switching this on before the endpoints
+                 and credentials are real puts a broken button on the login
+                 page of every database that installs the module. -->
+            <field name="enabled" eval="False"/>
+        </record>
+    </data>
+</odoo>
